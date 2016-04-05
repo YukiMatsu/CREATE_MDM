@@ -1,0 +1,171 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>IMPCOL_LDG.sikuli</h2> <a href="IMPCOL_LDG.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt"># -*- coding: utf-8 -*-</span>
+<span class="kw">import</span> sys
+reload(sys)
+sys.setdefaultencoding(<span class="str">'utf-8'</span>)
+
+<span class="kw">def</span> CloumCheck():
+    <span class="cmt"># テーブル名チェック</span>
+    <span class="skw">click</span>(Pattern(<img src="2016-03-22_213356.png" />).similar(<span class="dig">0.81</span>).targetOffset(-<span class="dig">1</span>,<span class="dig">6</span>))
+    <span class="skw">type</span>(<span class="str">"c"</span>,Key.CTRL)
+    num = Env.getClipboard()
+    <span class="kw">if</span> num == LDNAM:
+        <span class="skw">type</span>(Key.ENTER)
+        <span class="skw">click</span>(Pattern(<img src="2016-03-22_230923.png" />).similar(<span class="dig">0.83</span>).targetOffset(<span class="dig">12</span>,<span class="dig">0</span>))
+        <span class="skw">type</span>(Key.RIGHT)
+        <span class="skw">type</span>(Key.DOWN) <span class="cmt"># 「カラム」を開く</span>
+        <span class="skw">click</span>(<img src="imp.png" />)
+        <span class="cmt"># 接続情報の入力</span>
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(Key.TAB)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        paste(<span class="str">"10.36.114.188"</span>)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">type</span>(Key.TAB)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        paste(<span class="str">"XXDEVD01"</span>)
+        <span class="skw">type</span>(Key.TAB)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        paste(<span class="str">"xmdevdb3"</span>)
+        <span class="skw">type</span>(Key.TAB)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        paste(<span class="str">"1433"</span>)
+        <span class="skw">type</span>(Key.TAB)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        paste(<span class="str">"sa"</span>)
+        <span class="skw">type</span>(Key.TAB)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        paste(<span class="str">"pndZCq3e"</span>)
+        <span class="skw">type</span>(Key.TAB)
+        <span class="skw">type</span>(Key.TAB)
+        <span class="skw">type</span>(Key.TAB)
+        <span class="skw">type</span>(Key.TAB)
+        <span class="skw">type</span>(Key.ENTER)
+        <span class="cmt"># テーブル名の検索</span>
+        <span class="skw">click</span>(Pattern(<img src="2016-03-22_161609.png" />).exact().targetOffset(<span class="dig">0</span>,<span class="dig">14</span>))
+        <span class="skw">type</span>(<span class="str">"c"</span>,Key.CTRL)
+        r = Env.getClipboard()
+        <span class="kw">while</span> r != TPNAM:
+            <span class="skw">type</span>(Key.DOWN)
+            <span class="skw">type</span>(<span class="str">"c"</span>,Key.CTRL)
+            r = Env.getClipboard()
+        <span class="kw">else</span>:
+            <span class="skw">type</span>(Key.TAB)
+            <span class="skw">type</span>(Key.TAB)
+            <span class="skw">type</span>(Key.TAB)
+            <span class="skw">type</span>(Key.ENTER)
+            <span class="cmt">#click(Pattern("2016-03-22_200803.png").targetOffset(138,89))</span>
+            <span class="cmt"># インポートカラムのチェック </span>
+            <span class="skw">click</span>(<img src="2016-03-h22_151056.png" />)
+            <span class="skw">type</span>(Key.TAB)
+            <span class="skw">type</span>(Key.TAB)
+            <span class="skw">type</span>(Key.ENTER)
+            <span class="cmt"># 保存</span>
+            <span class="skw">click</span>(<img src="save.png" />)
+            <span class="skw">wait</span>(<span class="dig">10</span>)
+            <span class="skw">click</span>(Pattern(<img src="click.png" />).similar(<span class="dig">0.89</span>))
+            <span class="skw">type</span>(Key.LEFT)
+            <span class="skw">type</span>(Key.LEFT)
+    <span class="kw">else</span>:
+        confexe = popAsk(<span class="str">"Uuups,not match "</span> + LDNAM)
+        <span class="kw">if</span> confexe == True:
+            <span class="kw">print</span>(<span class="str">"not match"</span> + BONAM)
+            exit(<span class="dig">1</span>)
+        <span class="kw">else</span>:
+            <span class="kw">print</span>(<span class="str">"not match"</span> + BONAM)
+<span class="cmt"># CSVファイルのインポート(</span>
+<span class="kw">import</span> csv
+FILENAME = <span class="str">"C:\Program Files\SikuliX\BO_data_ForIMP_3.csv"</span>
+f = open(FILENAME,<span class="str">"r"</span>)
+reader = csv.reader(f)
+IMPLIST = []
+<span class="kw">for</span> i <span class="kw">in</span> reader:
+    IMPLIST.append(i)
+<span class="kw">else</span>:
+    <span class="kw">for</span> TPNAM, BONAM, STNAM, LDNAM <span class="kw">in</span> IMPLIST:
+        <span class="skw">type</span>(Key.DOWN)
+        <span class="skw">wait</span>(<span class="dig">3</span>)
+        <span class="kw">if</span> exists(Pattern(<img src="satag_fail-1.png" />).exact()):
+            <span class="kw">print</span>(<span class="str">"start_A"</span>)
+            <span class="skw">click</span>(Pattern(<img src="2016-03-22_230923.png" />).exact().targetOffset(<span class="dig">12</span>,<span class="dig">0</span>))
+            <span class="skw">type</span>(Key.DOWN)
+            CloumCheck()
+        <span class="kw">else</span>:
+            <span class="kw">print</span>(<span class="str">"start_B"</span>)
+            CloumCheck()
+    <span class="kw">else</span>:
+        <span class="kw">print</span>(<span class="str">"ALL LDG import finish"</span>)
+</pre>
+</body>
+</html>
